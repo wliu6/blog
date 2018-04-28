@@ -5,13 +5,12 @@
 # Site
 title: w66's blog
 subtitle: A man, will eventually become pirate king.
-description:
+description: 人生目标:\n“做个有知识的流氓，娶个有气质的文盲。”
 keywords:
-author: John Doe
+author: 王六六
 language:
 timezone:
 
-# URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://yoursite.com
 root: /
@@ -19,9 +18,9 @@ permalink: :year/:month/:day/:title/
 permalink_defaults:
 
 # Directory
-source_dir: source
+source_dir: /source/
 public_dir: public
-tag_dir: tags
+tag_dir: /tags/
 archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
@@ -73,11 +72,11 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: yilia
+theme: next
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git 
-  repository: git@github.com:wliu6/blog.git
+  repository: git@github.com:wliu6/wliu6.github.io.git
   branch: master
