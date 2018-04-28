@@ -5,14 +5,14 @@
 # Site
 title: w66's blog
 subtitle: A man, will eventually become pirate king.
-description: 人生目标:\n“做个有知识的流氓，娶个有气质的文盲。”
+description:  做个有知识的流氓丨娶个有气质的文盲
 keywords:
 author: 王六六
 language:
 timezone:
 
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://blog.pirat6.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
