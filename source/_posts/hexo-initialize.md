@@ -1,6 +1,6 @@
 ---
 title: hexo搭建博客
-date: 2018-05-02 08:49:21
+date: 2016-05-02 08:49:21
 tags:
 categories:
 copyright: true
