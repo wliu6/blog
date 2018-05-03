@@ -1,8 +1,8 @@
 ---
 title: hexo搭建博客
 date: 2016-05-02 08:49:21
-tags:
-categories:
+tags: hexo
+categories: blog
 copyright: true
 ---
 
@@ -13,7 +13,7 @@ copyright: true
 
 ---
 
-
+<br/>
 # 准备工作
 
 ## Dependencies
@@ -26,12 +26,12 @@ copyright: true
 
 
 <!-- 文章主体开始 -->
-
+<br/>
 # 创建GitHub page仓库
 使用“hexo” + “GitHub Page”搭建博客，首先需要一个GitHub Page repo。
 ![img1](/resourse/hexo/initialize/1.png)![img2](/resourse/hexo/initialize/2.png)
 
-
+<br/>
 # Blog Compiling
 
 ## 全局安装hexo
@@ -87,7 +87,7 @@ $ emacs ~/work/hexo/source/_posts/hexo-initialize.md
 
 ## 部署bolg
 ### 配置SSH Key
-**通过GitHub进行部署需要使用ssh方案（根据hexo官方文档，hexo deploy并不支持GitHub的https方案）。**
+**通过GitHub进行部署需要使用ssh方案（根据hexo官方文档，deploy并不支持GitHub的https方案）。**
 
 检查本机已生成过ssh密钥
 ```
@@ -129,6 +129,35 @@ deploy:
 ```
 $ hexo d -g
 ```
+
+## 访问bolg
+### 使用GitHub Page
+
+使用**GitHub&ensp;Page**访问博客，只需要将已经写好的博客部署到之前注册号的“GitHub&ensp;reop”，使用`username.github.io`访问即可。
+
+### 使用自己注册的域名
+在GitHub Page repo[添加域名](https://help.github.com/articles/adding-or-removing-a-custom-domain-for-your-github-pages-site/)，域名是你之前注册好的。
+![img8](/resourse/hexo/initialize/8.png)
+![img9](/resourse/hexo/initialize/9.png)
+
+在站点目录下创建CNAME文件，将域名写入，由于使用“hexo” + “GitHub Page”搭建博客，CNAME文件应该放在source目录下，以防每次部署时被覆盖。
+```
+$ cd hexo_project_dir/hexo/source
+$ touch CNAME
+$ vim CNAME
+$ i # 进入编辑模式，输入域名
+$ ESC # 退出编辑模式
+$ :wq # 退出并保存
+```
+
+获取博客站点IP
+```
+$ ping username.github.io
+```
+
+最后，进入你注册域名的云服务器站点的管理台，编辑域名解析，A文件记录IP，CNAME记录域名；
+![img10](/resourse/hexo/initialize/10.png)
+
 
 
 
