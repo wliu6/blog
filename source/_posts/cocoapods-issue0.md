@@ -63,7 +63,7 @@ Don't forget to anonymize any private data!
 
 我们先试试搜索一下，是否存在相同的问题（是否有人踩过这个坑）。。。
 
-（图）
+![img0](/resourse/iOS/Cocoapods/0.png)
 
 oh my god~ 有两个，纳尼！怎么这两个报错的描述和标题与我的报错 `[!] Oh no, an error occurred.` 都不一样啊。
 
@@ -139,7 +139,7 @@ JSON::ParserError - A JSON text must at least contain two octets!
 ――― TEMPLATE END ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
 ```
 
-真相永远只有一个（图）
+![img1](/resourse/iOS/Cocoapods/1.jpg)
 
 ```
 JSON::ParserError - A JSON text must at least contain two octets!
@@ -147,7 +147,7 @@ JSON::ParserError - A JSON text must at least contain two octets!
 
 Nice，跟错误报文搜索到的 issue 完全匹配，去看看两个 issue 里的讨论。
 找到解决办法了：
-（图）
+![img2](/resourse/iOS/Cocoapods/2.png)
 
 
 具体解决方案如下：
