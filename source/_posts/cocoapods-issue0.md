@@ -1,5 +1,5 @@
 ---
-title: Cocoapods Error —— [!] Oh no, an error occurred.
+title: CocoaPods Error —— [!] Oh no, an error occurred.
 date: 2017-06-26 11:23:06
 tags: iOS
 categories: development
@@ -13,9 +13,9 @@ copyright: true
 ---
 
 <br/>
-# 使用 Cocoapods 报错场景
+# 使用 CocoaPods 报错场景
 
-使用 Cocoapods 搜索一个库
+使用 CocoaPods 搜索一个库
 ```
 $ pod search 'xxx'
 ```
@@ -155,7 +155,7 @@ Nice，跟错误报文搜索到的 issue 完全匹配，去看看两个 issue �
 2. 如果存在，看看`search_index.json`文件大小是否是0字节;
 3. 如果`search_index.json`文件大小是否是0字节，删除该文件，重新执行`pod search 'xxx'`即可；
 
-Cocoapods 会重新创建 search_index.json 文件，会有如下输出：
+CocoaPods 会重新创建 search_index.json 文件，会有如下输出：
 ```
 Creating search index for spec repo 'coding-xxx-xxx'.. Done!
 Creating search index for spec repo 'kaistart-ios-xxx'.. Done!
@@ -165,13 +165,13 @@ Creating search index for spec repo 'master'.. Done!
 
 <br/>
 # 总结
-去`Cocoapods`官网溜达一圈，原来`Cocoapods`在缓存策略在操作主机本地有二级缓存，一级在系统资源库的`Caches`目录下，第二级缓存在使用`Cocoapods`的工程目录下。
+去`CocoaPods`官网溜达一圈，原来`CocoaPods`在缓存策略在操作主机本地有二级缓存，一级在系统资源库的`Caches`目录下，第二级缓存在使用`CocoaPods`的工程目录下。
 
 在执行`pod install`时，会先从本地缓存`copy`到工程目录下，再建立项目工程与项目目录下缓存的依赖关系，而从本地一级缓存查询就是利用这个搜索索引的json文件`search_index.json`，该json文件的内容就是一级缓存的目录。
 
 每次更新仓库的时候`search_index.json`文件就会重新创建，出现`JSON::ParserError - A JSON text must at least contain two octets!`错误可能是因为在更新仓库的时候被打断了（或主动中断进程），所以Google到的通过重新更新仓库来解决这个问题，也是可以的。
 
-但是国内的网络问题，更新起来很慢，故可以删除`search_index.json`文件，在使用`Cocoapods`命令`install`丨`search`等都会重新创建`search_index.json`文件，便可解决`JSON::ParserError - A JSON text must at least contain two octets!`问题。
+但是国内的网络问题，更新起来很慢，故可以删除`search_index.json`文件，在使用`CocoaPods`命令`install`丨`search`等都会重新创建`search_index.json`文件，便可解决`JSON::ParserError - A JSON text must at least contain two octets!`问题。
 
 终于告一段落，我佛慈悲，无量寿佛...
 
