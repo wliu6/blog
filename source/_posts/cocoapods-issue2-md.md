@@ -83,6 +83,7 @@ $ vim -R Podfile.lock
 
 	'0.1.2' —— 0.1.2版的包；
 
+
 <br/>
 # pick知识点
 `CocoaPods`的版本控制基于[Semantic Versioning 2.0.0](https://semver.org/)，分为主版本、次版本、修订版本。
@@ -94,9 +95,11 @@ $ vim -R Podfile.lock
 故相对规范的开源仓库，重新设计架构都会更新主版本号。建议各位玩开源的熊蝶再发布版本的时候注意一下[`CocoaPods所使用的版本准则`](https://semver.org/)。
 
 
+<br/>
 # Tsukkomi
 吐槽一下环信，一家付费提供IM服务的公司，于`3.3.7`到`3.3.8`版本修改了其SDK的public属性`[EMClient isLoggedIn]`的语义直接变更。
 
+![img3](/resourse/iOS/Cocoapods/3.png)
 既然做付费服务，那么态度能否专业一点。
 
 
