@@ -77,6 +77,7 @@ $ pod lib create <repo-name>
 ```
 $ pod repo add <specs-name> <specs-repo-url>
 ```
+如果还没有`Private Specs Repo`，建立一个空的`git repo`即可
 
 ## 验证library
 开发完成静态类库之后，需要验证一下类库是否符合要求（能否编译通过）。

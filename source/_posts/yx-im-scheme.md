@@ -1,5 +1,5 @@
 ---
-title: 网易云信 —— 深度定制化方案
+title: 网易云信 —— 版本管理方案
 date: 2018-07-23 19:58:36
 tags: iOS
 categories: development
@@ -14,9 +14,13 @@ copyright: true
 ---
 
 <br/>
-# 项目复杂多介绍
+# 前言
 
-由于涉及到公司业务，在此不会表述公司具体业务，通过其他表述来描述项目复杂度。复杂度主要体现在：
+## 读者视角
+本文以iOS PG为第一视角编辑，默认读者了解`CocoaPods`的使用、私有库以及私有库如何进行版本控制。
+
+## 业务复杂度
+关于业务复杂度的描述，由于涉及到公司业务，在此不会表述公司具体业务，通过其他表述来描述项目复杂度，复杂度主要体现在：
 
 	* 群组 —— 分为多种类型，
 	* 群组成员 —— 具有多种角色，不同角色具备不同的操作权限
@@ -31,30 +35,57 @@ copyright: true
 <br/>
 # 云信渠道技术调研
 
+## 业务调研
+在迁移之前做了下技术层面的调研，确保能满足所有业务需求。下图取自云信文档的云信架构图，图中介绍了云信的通信机制。
+<!-- ![img0](/resourse/iOS/YX_IM/0.png) -->
+<img src="/resourse/iOS/YX_IM/0.png" width="600">
+经过调研，发现云信支持用户信息自定义、群信息自定义、群成员信息自定义以及发送自定义消息，这完全能满足所有需求。同时云信提供了一套`IM-UI`库，可以直接拿来用（建议使用）。
+
+## UI调研
+UI迁移方案有如下两种，
+
+	方案一：直接在云信提供的`IM-UI`基础上增加业务修改；
+	方案二：在原项目的`IM-UI`基础上替换socket的代理；
+
+相比之下方案一成本更低，且出错率更低，而且方案二有在测试阶段不易易识别隐藏bug的风险。故决定采用方案二进行迁移。
 
 
 <br/>
 # 云信渠道分析
 云信IM服务渠道，对于自有项目来说算是外部资源。应该考虑其单独版本控制问题，例如：新版本有问题，可以在自有项目中依赖相对老的版本。
-云信SDK
-云信UIKit
-
-
-
-<br/>
-# 业务交互规划
+[云信SDK](http://dev.yunxin.163.com/docs/product/IM%E5%8D%B3%E6%97%B6%E9%80%9A%E8%AE%AF/SDK%E5%BC%80%E5%8F%91%E9%9B%86%E6%88%90/iOS%E5%BC%80%E5%8F%91%E9%9B%86%E6%88%90/%E9%9B%86%E6%88%90%E6%96%B9%E5%BC%8F?#%E8%87%AA%E5%8A%A8%E9%9B%86%E6%88%90)、[云信UI](https://github.com/netease-im/NIM_iOS_UIKit)都可基于`CocoaPods`进行版本管理。但是基于业务、UED团队的需求，[云信UI](https://github.com/netease-im/NIM_iOS_UIKit)这个库一定是要修改，所以版本控制不能直接依赖[云信的UI仓库](https://github.com/netease-im/NIM_iOS_UIKit)，要通过镜像的方式去管理UI库的版本。
 
 
 
 <br/>
 # UI仓库开发及版本控制规划
 
+## 什么是镜像
+什么是镜像？小时候用`windows`转系统的镜像类比一下，懂了吧。简单理解就是基于模板copy的一个压缩备份。
+
+## 如何通过镜像的方式去管理UI库的版本
+
+通过镜像的方式去管理UI库的版本，首先应建立一个本地两个远端仓库的关系。第一步，通过`git clone`工具将[云信UI仓库](https://github.com/netease-im/NIM_iOS_UIKit)克隆到本地；第二步，通过`git add remote`工具添加自己的git远端仓库。
+
+接下来需要以自己的私有`git`仓库建立[`CocoaPods`私有库](http://blog.pirate6.com/2016/07/20/cocoapods-private-repo-md/)，打包上传的时候依赖该私有库，便可达到控制版本目的，比如实现IM模块单独回滚到上一个minor版本。
+
+实际的代码数据流向如下图。只从[云信的UI仓库](https://github.com/netease-im/NIM_iOS_UIKit)拉取，获取云信的最新功能的UI支持。在本地进行开发，并上传至私有`git`仓库。验收通过合并到`master`分支，并打`tag`以用于`CocoaPods`进行控制版本。
+<!-- ![img2](/resourse/iOS/YX_IM/2.png) -->
+<img src="/resourse/iOS/YX_IM/2.png" width="600">
+
+
+
+<!-- <br/>
+# 业务交互规划
+![img1](/resourse/iOS/YX_IM/1.png)
+<img src="/resourse/iOS/YX_IM/1.png" width="600">
+ -->
 
 
 <br/>
 # 总结
 
-这样做的优点，
+通过镜像的方式去管理UI库的版本，缺点是体力工作量稍微增多了一些；优点是降低耦合度，提高了风险应对能力。比如产品需求新增IM功能，在开发一段时间后，由于市场及业务原因不需要这个功能了，不需要手动去删除代码，直接版本回滚即可。而且这样做可以利用`git workflow`的所有优秀特性哟。
 
 
 
